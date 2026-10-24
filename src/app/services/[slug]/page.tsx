@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { services, work, site } from "@/lib/data"
+import { services, work } from "@/lib/data"
 import Reveal from "@/components/reveal"
 
 export function generateStaticParams() {

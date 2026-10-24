@@ -37,7 +37,16 @@ export type WorkItem = {
   summary: string
   details: string[]
   numbers: { value: string; label: string }[]
-  media: { kind: "poster" | "video"; label: string; poster?: string }[]
+  // To use a real screenshot or clip, drop the file in public/work/ and set
+  // `src` (e.g. "/work/skor-cast.png"). Without `src` the SVG placeholder shows.
+  // The home frame is 4:5 and crops with object-fit: cover, anchored to the top.
+  media: {
+    kind: "poster" | "video"
+    label: string
+    src?: string
+    poster?: string
+    alt?: string
+  }[]
 }
 
 export const work: WorkItem[] = [

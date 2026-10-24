@@ -20,6 +20,8 @@ export default function Cursor() {
     let label = ""
     let labelTarget: HTMLElement | null = null
     let raf = 0
+    // Reduced motion: the ring tracks the pointer exactly instead of trailing it.
+    const ease = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 1 : 0.12
 
     const onMove = (e: PointerEvent) => {
       x = e.clientX
@@ -35,11 +37,12 @@ export default function Cursor() {
     }
     const tick = () => {
       raf = 0
-      rx += (x - rx) * 0.12
-      ry += (y - ry) * 0.12
+      rx += (x - rx) * ease
+      ry += (y - ry) * ease
       dot.style.transform = `translate(${x}px, ${y}px)`
       ring.style.transform = `translate(${rx}px, ${ry}px)`
-      raf = requestAnimationFrame(tick)
+      // Stop the loop once the ring has caught up with the pointer.
+      if (Math.abs(x - rx) > 0.1 || Math.abs(y - ry) > 0.1) raf = requestAnimationFrame(tick)
     }
     window.addEventListener("pointermove", onMove, { passive: true })
     return () => {

@@ -2,8 +2,7 @@ import Link from "next/link"
 import { site, marqueeItems, work, services, statement } from "@/lib/data"
 import { Kinetic } from "@/components/kinetic"
 import Reveal from "@/components/reveal"
-import { MediaBlock } from "@/components/media-block"
-import { MotionToggle } from "@/components/motion-toggle"
+import { FeaturedWork } from "@/components/featured-work"
 
 export default function Home() {
   const featured = work.slice(0, 3)
@@ -13,18 +12,15 @@ export default function Home() {
     <>
       <div className="page-section">
         <section className="hero">
-          <div className="hero__top eyebrow" data-reveal>
+          <Reveal className="hero__top eyebrow">
             <span>(Portfolio / {site.year})</span>
             <span className="hero__meta-centre">{site.role}</span>
             <span>{site.location}</span>
-          </div>
+          </Reveal>
 
-          <h1 className="hero__name">
-            <span className="kinetic__line hero__line">
-              <Kinetic
-                text={nameLines[0]}
-                accentEnd
-              />
+          <h1 className="hero__name" aria-label={site.name}>
+            <span className="kinetic__line hero__line" aria-hidden="true">
+              <Kinetic text={nameLines[0]} />
             </span>
             <span className="kinetic__line hero__line hero__line--second">
               <Kinetic
@@ -35,19 +31,24 @@ export default function Home() {
           </h1>
 
           <div className="hero__bottom">
-            <p className="hero__intro" data-reveal>
+            <Reveal as="p" className="hero__intro" delay={0.1}>
               {site.tagline}
-            </p>
-            <span className="hero__scroll eyebrow" data-reveal>
+            </Reveal>
+            <Reveal as="span" className="hero__scroll eyebrow" delay={0.2}>
               {site.scrollHint}
-            </span>
-            <Link
-              href="/work"
-              className="hero__button"
-              data-cursor="Look"
-            >
-              {site.cta} →
-            </Link>
+            </Reveal>
+            <div className="hero__actions">
+              <Link
+                href="/work"
+                className="hero__button"
+                data-cursor="Look"
+              >
+                {site.cta} →
+              </Link>
+              <Link href="/contact" className="hero__link" data-cursor="Hello">
+                Start a project
+              </Link>
+            </div>
           </div>
         </section>
       </div>
@@ -75,45 +76,18 @@ export default function Home() {
 
       <div className="page-section">
         <section className="selected-work">
-          <div className="selected-work__head" data-reveal>
+          <Reveal className="selected-work__head">
             <h2 className="selected-work__label">
               Selected work <span>({String(featured.length).padStart(2, "0")})</span>
             </h2>
             <div className="selected-work__head-end">
-              <span className="selected-work__pause">
-                <MotionToggle />
-              </span>
               <span className="selected-work__years">
                 2025 — 2026
               </span>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="selected-work__grid">
-            <div className="selected-work__media">
-              <WorkMedia items={featured} />
-            </div>
-            <div className="selected-work__list">
-              {featured.map((w, i) => (
-                <Reveal key={w.slug} as="div" delay={i * 0.08}>
-                  <Link
-                    href={`/work/${w.slug}`}
-                    className="selected-work__row"
-                    data-cursor="View"
-                  >
-                    <span className="selected-work__num" aria-hidden="true">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="selected-work__name">{w.title}</span>
-                    <span className="selected-work__year">{w.year}</span>
-                    <span className="selected-work__details">
-                      {w.summary}
-                    </span>
-                  </Link>
-                </Reveal>
-              ))}
-            </div>
-          </div>
+          <FeaturedWork items={featured} />
         </section>
       </div>
 
@@ -158,25 +132,5 @@ export default function Home() {
         </section>
       </div>
     </>
-  )
-}
-
-function WorkMedia({ items }: { items: (typeof work)[number][] }) {
-  return (
-    <div className="selected-work__frame">
-      {items.map((w, i) => (
-        <div
-          key={w.slug}
-          className="selected-work__slide"
-          data-active={i === 0 ? "" : undefined}
-        >
-          <MediaBlock slug={w.slug} label={w.media[0]?.label ?? w.title} />
-          <div className="selected-work__caption">
-            <span>{w.title}</span>
-            <span>{w.year}</span>
-          </div>
-        </div>
-      ))}
-    </div>
   )
 }

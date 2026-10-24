@@ -24,7 +24,8 @@ export function Kinetic({
       {lines.map((word, wi) => (
         <span key={wi} className="kinetic__word">
           {word.split("").map((ch, ci) => {
-            const isLast = accentEnd && wi === lines.length - 1
+            const isLast =
+              accentEnd && wi === lines.length - 1 && ci === word.length - 1
             return (
               <span
                 key={ci}
@@ -37,7 +38,7 @@ export function Kinetic({
               </span>
             )
           })}
-          {wi < lines.length - 1 ? <span className="kinetic__letter"> </span> : null}
+          {wi < lines.length - 1 ? <span className="kinetic__letter" data-char=" " /> : null}
         </span>
       ))}
     </span>

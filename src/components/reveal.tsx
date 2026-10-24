@@ -12,13 +12,17 @@ export default function Reveal({
   children: ReactNode
   className?: string
   delay?: number
-  as?: "div" | "section" | "li" | "article"
+  as?: "div" | "section" | "li" | "article" | "p" | "span"
 }) {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const el = ref.current
     if (!el) return
+    if (typeof IntersectionObserver === "undefined") {
+      el.dataset.revealed = ""
+      return
+    }
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {

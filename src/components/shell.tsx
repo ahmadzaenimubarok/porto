@@ -4,6 +4,8 @@ import Link from "next/link"
 import { site } from "@/lib/data"
 import Cursor from "./cursor"
 import Menu, { type MenuItem } from "./menu"
+import { MotionToggle } from "./motion-toggle"
+import { initialMotion } from "@/lib/motion"
 import "./layout.css"
 
 const MENU: MenuItem[] = [
@@ -19,8 +21,8 @@ export default function Shell({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     document.documentElement.dataset.js = "on"
-    const saved = localStorage.getItem("motion")
-    document.documentElement.dataset.motion = saved ?? "on"
+    document.documentElement.dataset.motion = initialMotion()
+    window.dispatchEvent(new Event("motionchange"))
   }, [])
 
   useEffect(() => {
@@ -34,14 +36,17 @@ export default function Shell({ children }: { children: ReactNode }) {
           {site.shortName}
         </Link>
         <span className="header__meta">{site.location}</span>
-        <button
-          className="header__menu"
-          aria-haspopup="dialog"
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((v) => !v)}
-        >
-          Menu
-        </button>
+        <div className="header__actions">
+          <MotionToggle />
+          <button
+            className="header__menu"
+            aria-controls="site-menu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            {menuOpen ? "Close" : "Menu"}
+          </button>
+        </div>
       </header>
 
       <Menu
@@ -51,11 +56,11 @@ export default function Shell({ children }: { children: ReactNode }) {
         email={site.email}
         location={site.location}
       />
-      <main id="main" className="page-sections">
+      <main id="main" className="page-sections" inert={menuOpen}>
         {children}
       </main>
 
-      <footer className="footer">
+      <footer className="footer" inert={menuOpen}>
         <div>
           <span className="footer__label eyebrow">
             Got something in mind?

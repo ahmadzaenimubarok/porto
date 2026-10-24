@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-24T08:23:58.560Z",
+  "title": "Design System: Ahmad Zaeni Mubarok \u2014 Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "signal-blue": {
+        "role": "primary",
+        "displayName": "Signal Blue",
+        "canonical": "#7fa8ff",
+        "tonalRamp": [
+          "oklch(15% 0.14 265)",
+          "oklch(25% 0.14 265)",
+          "oklch(35% 0.14 265)",
+          "oklch(45% 0.14 265)",
+          "oklch(60% 0.14 265)",
+          "oklch(72% 0.14 265)",
+          "oklch(84% 0.14 265)",
+          "oklch(95% 0.14 265)"
+        ]
+      },
+      "court-black": {
+        "role": "neutral",
+        "displayName": "Court Black",
+        "canonical": "#111010",
+        "tonalRamp": [
+          "oklch(15% 0.004 60)",
+          "oklch(25% 0.004 60)",
+          "oklch(35% 0.004 60)",
+          "oklch(45% 0.004 60)",
+          "oklch(60% 0.004 60)",
+          "oklch(72% 0.004 60)",
+          "oklch(84% 0.004 60)",
+          "oklch(95% 0.004 60)"
+        ]
+      },
+      "scoreboard-panel": {
+        "role": "neutral",
+        "displayName": "Scoreboard Panel",
+        "canonical": "#1a1918",
+        "tonalRamp": [
+          "oklch(15% 0.004 60)",
+          "oklch(25% 0.004 60)",
+          "oklch(35% 0.004 60)",
+          "oklch(45% 0.004 60)",
+          "oklch(60% 0.004 60)",
+          "oklch(72% 0.004 60)",
+          "oklch(84% 0.004 60)",
+          "oklch(95% 0.004 60)"
+        ]
+      },
+      "chalk": {
+        "role": "neutral",
+        "displayName": "Chalk",
+        "canonical": "#edeae4",
+        "tonalRamp": [
+          "oklch(15% 0.01 85)",
+          "oklch(25% 0.01 85)",
+          "oklch(35% 0.01 85)",
+          "oklch(45% 0.01 85)",
+          "oklch(60% 0.01 85)",
+          "oklch(72% 0.01 85)",
+          "oklch(84% 0.01 85)",
+          "oklch(95% 0.01 85)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero name, kinetic letters."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Mono metadata and controls."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Default easing for reveals and hovers."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(0.76, 0, 0.24, 1)",
+        "purpose": "Overlay and large transitions."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "menu-meta",
+        "value": "700px"
+      },
+      {
+        "name": "tiles-two-col",
+        "value": "760px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Pill Button",
+      "kind": "button",
+      "refersTo": "button-pill",
+      "description": "Primary call to action; inverts on hover.",
+      "html": "<a class=\"ds-btn-pill\" href=\"#\">See the work \u2192</a>",
+      "css": ".ds-btn-pill{display:inline-flex;align-items:center;gap:10px;padding:16px 24px;border:1px solid rgba(237,234,228,.25);border-radius:999px;font-family:'Geist Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#edeae4;text-decoration:none;transition:background .35s cubic-bezier(.16,1,.3,1),color .35s cubic-bezier(.16,1,.3,1)}.ds-btn-pill:hover{background:#edeae4;color:#111010;border-color:#edeae4}.ds-btn-pill:focus-visible{outline:2px solid #7fa8ff;outline-offset:3px}"
+    },
+    {
+      "name": "Menu Button",
+      "kind": "nav",
+      "refersTo": "button-pill",
+      "description": "Header menu trigger.",
+      "html": "<button class=\"ds-menu\">Menu</button>",
+      "css": ".ds-menu{font-family:'Geist Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;border:1px solid rgba(237,234,228,.25);border-radius:999px;background:none;color:#edeae4;cursor:pointer;transition:background .3s cubic-bezier(.16,1,.3,1),color .3s cubic-bezier(.16,1,.3,1)}.ds-menu:hover{background:#edeae4;color:#111010}.ds-menu:focus-visible{outline:2px solid #7fa8ff;outline-offset:3px}"
+    },
+    {
+      "name": "Work Row",
+      "kind": "custom",
+      "refersTo": "work-row",
+      "description": "Index, project name, year on a hairline.",
+      "html": "<a class=\"ds-row\" href=\"#\"><span class=\"ds-n\">01</span><span class=\"ds-name\">Skor Cast</span><span class=\"ds-y\">2026</span></a>",
+      "css": ".ds-row{display:grid;grid-template-columns:40px 1fr auto;gap:16px;align-items:baseline;padding:28px 0;border-top:1px solid rgba(237,234,228,.12);color:#edeae4;text-decoration:none;transition:padding .5s cubic-bezier(.16,1,.3,1)}.ds-row:hover{padding-left:12px}.ds-row:hover .ds-name{color:#7fa8ff}.ds-n,.ds-y{font-family:'Geist Mono',monospace;font-size:12px;color:#928d85}.ds-name{font-family:Archivo,sans-serif;font-size:32px;font-weight:700;line-height:1.05}"
+    },
+    {
+      "name": "Service Tile",
+      "kind": "card",
+      "refersTo": "service-tile",
+      "description": "Numbered service entry on a raised panel.",
+      "html": "<a class=\"ds-tile\" href=\"#\"><span class=\"ds-tn\">01</span><div class=\"ds-tt\">Web apps</div><p class=\"ds-td\">Laravel and Next.js products.</p></a>",
+      "css": ".ds-tile{display:block;padding:28px;min-height:200px;background:#1a1918;border:1px solid rgba(237,234,228,.12);border-radius:4px;color:#edeae4;text-decoration:none}.ds-tn{font-family:'Geist Mono',monospace;font-size:12px;color:#8f8a82}.ds-tt{font-family:Archivo,sans-serif;font-size:36px;font-weight:800;line-height:1;margin-top:40px;transition:color .3s}.ds-tile:hover .ds-tt{color:#7fa8ff}.ds-td{margin:14px 0 0;color:#b9b4ac;font-size:15px;line-height:1.55}.ds-tile:focus-visible{outline:2px solid #7fa8ff;outline-offset:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Live Scoreboard",
+    "overview": "A dark hall, one board lit up. Heavy condensed numerals, a near-black field, and a single electric signal color; type is the main character and motion always has a calm path.",
+    "keyCharacteristics": [
+      "Near-black field with one blue signal, used rarely.",
+      "Variable-width Archivo at extremes; Geist Mono for metadata.",
+      "Flat: tonal surfaces and 1px hairlines, never shadows.",
+      "Pill controls, 4px tiles, 8px media.",
+      "Kinetic type, labeled custom cursor, marquee."
+    ],
+    "rules": [
+      {
+        "name": "The One Signal Rule",
+        "body": "Signal Blue covers well under 10% of any screen.",
+        "section": "colors"
+      },
+      {
+        "name": "The Chalk Not Cream Rule",
+        "body": "Neutrals stay near-black and chalk, never beige.",
+        "section": "colors"
+      },
+      {
+        "name": "The Axis Is The Style Rule",
+        "body": "Hierarchy comes from Archivo's width and weight axes, not extra fonts.",
+        "section": "typography"
+      },
+      {
+        "name": "The Label Budget Rule",
+        "body": "Uppercase tracked mono is for short metadata and controls, not section headings.",
+        "section": "typography"
+      },
+      {
+        "name": "The No-Shadow Rule",
+        "body": "Separate with hairlines or tonal steps; no shadows or glass blur.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep the field Court Black and use Signal Blue on one or two elements per screen.",
+      "Do build hierarchy with Archivo's width and weight axes.",
+      "Do give every animation a reduced-motion path."
+    ],
+    "donts": [
+      "Don't make a generic SaaS template.",
+      "Don't make a template dev portfolio.",
+      "Don't use shadows, glassmorphism, or gradient text.",
+      "Don't tint the field toward cream, sand, or paper."
+    ]
+  }
+}

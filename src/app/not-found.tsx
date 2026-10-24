@@ -11,7 +11,7 @@ export default function NotFound() {
         Not found
       </h1>
       <p style={{ color: "var(--color-muted)", marginTop: 20 }}>
-        That page doesn't exist.
+        That page doesn&apos;t exist.
       </p>
       <Link
         href="/"

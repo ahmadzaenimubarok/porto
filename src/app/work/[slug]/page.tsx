@@ -2,7 +2,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { work } from "@/lib/data"
 import Reveal from "@/components/reveal"
-import { MediaBlock } from "@/components/media-block"
+import { WorkMedia } from "@/components/work-media"
 
 export function generateStaticParams() {
   return work.map((w) => ({ slug: w.slug }))
@@ -50,7 +50,7 @@ async function CaseInner({ params }: { params: Promise<{ slug: string }> }) {
       <div className="page-section">
         <Reveal>
           <div className="case-media">
-            <MediaBlock slug={item.slug} label={item.media[0]?.label ?? item.title} />
+            <WorkMedia item={item} eager />
           </div>
         </Reveal>
 

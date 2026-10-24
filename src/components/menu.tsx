@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useEffect, useRef } from "react"
 import { usePathname } from "next/navigation"
 
 export type MenuItem = {
@@ -22,11 +22,19 @@ export default function Menu({
   location: string
 }) {
   const pathname = usePathname()
-  const [active, setActive] = useState<string>(pathname)
+  const active = pathname
+  const navRef = useRef<HTMLElement>(null)
+  const wasOpen = useRef(false)
 
+  // Move focus into the menu when it opens and back to its trigger on close.
   useEffect(() => {
-    setActive(pathname)
-  }, [pathname])
+    if (open) {
+      navRef.current?.querySelector<HTMLElement>(".menu__item")?.focus()
+    } else if (wasOpen.current) {
+      document.querySelector<HTMLElement>(".header__menu")?.focus()
+    }
+    wasOpen.current = open
+  }, [open])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -38,9 +46,11 @@ export default function Menu({
 
   return (
     <nav
+      ref={navRef}
       id="site-menu"
       className="menu"
       aria-hidden={!open}
+      inert={!open}
       role="dialog"
       aria-label="Menu"
     >
