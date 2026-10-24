@@ -1,0 +1,45 @@
+/* Page-level scaffolding shared across routes */
+
+.page-section {
+  padding: clamp(56px, 10vh, 120px) var(--spacing-gutter);
+}
+
+.page-section--tight {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* motion preference toggle (respects consent) */
+.motion-prefs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.motion-prefs button {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-label);
+  padding: 6px 10px;
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-pill);
+}
+.motion-prefs button[aria-pressed="true"] {
+  background: var(--color-text);
+  color: var(--color-bg);
+  border-color: var(--color-text);
+}
+
+/* reduced motion: kill all animation */
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track {
+    animation: none !important;
+  }
+  html[data-motion="on"] [data-reveal]:not([data-revealed]),
+  html[data-motion="on"] [data-wordreveal] .data-word {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
